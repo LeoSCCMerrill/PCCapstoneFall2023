@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Student Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to your student page</h1>
+    <ul class="navbar-nav flex-grow-1">
+        <li class="nav-item">
+            <a asp-area="" asp-controller="Home" asp-action="StudentDrills">Take drills</a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="" asp-controller="Home" asp-action="StudentDrillResults">Drill Results</a>
+        </li>
+        <li class="nav-item">
+            <a asp-area="" asp-controller="Home" asp-action="StudentRank">What's My Rank?</a>
+        </li>
+    </ul>
+</div>
