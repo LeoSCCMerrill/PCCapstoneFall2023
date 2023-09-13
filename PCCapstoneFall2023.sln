@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCCapstoneFall2023", "PCCapstoneFall2023\PCCapstoneFall2023.csproj", "{64B24F89-5CF4-4CFD-9646-1798AF7748DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCCapstoneFall2023", "PCCapstoneFall2023\PCCapstoneFall2023.csproj", "{EDF0299E-DE1A-4562-9350-3B9DF4F77D5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{64B24F89-5CF4-4CFD-9646-1798AF7748DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64B24F89-5CF4-4CFD-9646-1798AF7748DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64B24F89-5CF4-4CFD-9646-1798AF7748DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64B24F89-5CF4-4CFD-9646-1798AF7748DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDF0299E-DE1A-4562-9350-3B9DF4F77D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDF0299E-DE1A-4562-9350-3B9DF4F77D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDF0299E-DE1A-4562-9350-3B9DF4F77D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDF0299E-DE1A-4562-9350-3B9DF4F77D5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {54E256D9-9114-4FDB-9E85-AE6EEAB1B238}
+		SolutionGuid = {34AA0E4F-D181-4602-8C0D-F114F2C8CD63}
 	EndGlobalSection
 EndGlobal
