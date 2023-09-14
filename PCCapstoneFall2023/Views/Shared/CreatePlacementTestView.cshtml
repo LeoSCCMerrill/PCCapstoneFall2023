@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "CreatePlacementTest";
+}
+
+<h1>Create A Placement Test</h1>
+<p>Answers should be in numeric format(example: 23)</p>
+<br>
+<form asp-action="Add" method="post">
+
+    <label>Question: </label>
+    <input name="AskedQuestion" /><br />
+    <br>
+
+    <label>Answer: </label>
+    <input name="CorrectAnswer" /><br />
+    <br>
+
+    <label>Points Worth:</label>
+    <input name="PointsWorth" /><br />
+    <br>
+
+    <button type="submit">Add Question</button>
+    <br><br>
+    <button asp-controller="PlacementTest" asp-action="Index" method="get">View Test</button>
+</form>

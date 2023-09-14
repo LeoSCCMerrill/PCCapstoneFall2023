@@ -1,0 +1,23 @@
+﻿@model List<MathQuestion>
+
+<h2>Placement Test</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Points Worth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.AskedQuestion</td>
+                <td>@question.CorrectAnswer</td>
+                <td>@question.PointsWorth</td>
+            </tr>
+        }
+    </tbody>
+</table>

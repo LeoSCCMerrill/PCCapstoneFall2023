@@ -1,24 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PCCapstoneFall2023.Models;
 using System.Diagnostics;
+using System.Linq;
 
 namespace PCCapstoneFall2023.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+      
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+       
 
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult DisplayTest()
+        {
+           
+            return View();
+            
+        }
+
+        public IActionResult CreatePlacementTestView()
         {
             return View();
         }
