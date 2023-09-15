@@ -15,8 +15,6 @@ namespace PCCapstoneFall2023.Models
 
         [Required(ErrorMessage ="Please enter the number of points this question is worth.")]
         public int PointsWorth { get; set; }
-
-        // if the StudentAnswer != CorrectAnswer, incorrectAnswer == true, remove PointsWorth from 100%
     }
    
 }
