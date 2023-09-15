@@ -17,7 +17,14 @@
                 <td>@question.AskedQuestion</td>
                 <td>@question.CorrectAnswer</td>
                 <td>@question.PointsWorth</td>
+                <td>
+                    <form asp-action="RemoveQuestion" method="post">
+                        <input type="hidden" name="QuestionId" value="@question.QuestionID" />
+                        <button type="submit">Remove Question</button>
+                    </form>
+                </td>
             </tr>
         }
     </tbody>
 </table>
+<a asp-controller="Home" asp-action="CreatePlacementTestView" class="btn btn-primary">Back</a>
