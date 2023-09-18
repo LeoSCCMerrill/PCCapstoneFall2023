@@ -18,48 +18,16 @@ namespace PCCapstoneFall2023.Controllers
             return View();
         }
 
-        public IActionResult StudentHome()
+        
+        public IActionResult StudentRanks()
         {
             return View();
-        }
-
-        public IActionResult StudentDrills()
-        {
-            return View();
-        }
-
-        public IActionResult StudentDrillResults()
-        {
-            return View();
-        }
-        public IActionResult StudentRank()
-        {
-            return View();
-        }
-        public IActionResult TeacherHome()
-        {
-            return View();
-        }
-        public IActionResult CreateDrills()
-        {
-            return View();
-        }
-        public IActionResult TeacherDrillResults() 
-        {
-            return View();
-        }
+        }     
         public IActionResult AdminHome()
         {
             return View();
         }
-        public IActionResult CreateAccounts()
-        {
-            return View();
-        }
-        public IActionResult DeleteAccounts()
-        {
-            return View();
-        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
