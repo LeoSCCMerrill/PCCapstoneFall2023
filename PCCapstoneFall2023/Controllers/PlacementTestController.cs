@@ -19,6 +19,12 @@ namespace PCCapstoneFall2023.Controllers
             return View(mathQuestions);
         }
 
+        public IActionResult StudentPlacementView()
+        {
+            var mathQuestions = _context.MathQuestions.ToList();
+            return View(mathQuestions);
+        }
+
         [HttpPost]
         public IActionResult Add(MathQuestion model)
         {

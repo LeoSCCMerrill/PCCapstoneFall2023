@@ -1,0 +1,39 @@
+﻿@model List<MathQuestion>
+
+
+	<h1>Math Placement Test</h1>
+	<p>Below is a Math Placement test. This exam will be used to determine your
+		basic math skills. There is no time limit. Please type all of your answers
+		in numeric format. Example 4 + 4 = 8
+	</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th></th>
+            <th>Points Worth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.AskedQuestion</td>
+                <td>
+                    <form asp-action="StudentAnswer" method="post">
+                        <input type="number" name="TestAnswer" value="" />
+                    </form>
+                </td>
+                <td input type="hidden">@question.CorrectAnswer</td>
+                <td>@question.PointsWorth</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>When you are done, click the "Submit Test" button below. You will then be returned
+	to the Home Page.
+</p>
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Submit Test</a>
