@@ -18,11 +18,16 @@ namespace PCCapstoneFall2023.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        
+        public IActionResult StudentRanks()
+        {
+            return View();
+        }     
+        public IActionResult AdminHome()
         {
             return View();
         }
-
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
