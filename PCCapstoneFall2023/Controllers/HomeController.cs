@@ -18,7 +18,12 @@ namespace PCCapstoneFall2023.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        
+        public IActionResult StudentRanks()
+        {
+            return View();
+        }     
+        public IActionResult AdminHome()
         {
             return View();
         }
