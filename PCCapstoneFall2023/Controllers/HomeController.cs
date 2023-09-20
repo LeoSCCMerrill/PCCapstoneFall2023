@@ -21,6 +21,7 @@ namespace PCCapstoneFall2023.Controllers
             return View();
         }
 
+ PlacementTest
        
 
         public IActionResult DisplayTest()
@@ -31,10 +32,26 @@ namespace PCCapstoneFall2023.Controllers
         }
 
         public IActionResult CreatePlacementTestView()
+
+        
+        public IActionResult StudentRanks()
+        {
+            return View();
+        }     
+        public IActionResult AdminHome()
+ master
         {
             return View();
         }
 
+        public IActionResult TestResult()
+        {
+            return View();
+        }
+        public IActionResult Parent()
+        {
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

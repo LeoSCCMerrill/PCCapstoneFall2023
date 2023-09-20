@@ -1,0 +1,32 @@
+﻿@{
+
+    Parent parent1 = new Parent(2, 1);
+    Parent parent2 = new Parent(8, 1);
+    List<Parent> ListParent = new List<Parent>();
+    ListParent.Add(parent1);
+    ListParent.Add(parent2);
+    //make sure parentID is correct
+    ViewData["Title"] = "Parent View";
+    
+
+}
+    
+<table>
+    <tr>
+    <th>ParentID</th>
+    <th>StudentID</th>
+    <th></th>
+    </tr>
+    
+        @{foreach (var p in ListParent){
+            <tr>
+            <td>@parent1.ParentID</td>
+            <td>@p.StudentID</td>
+            <td><button>See Grades NOT WORKIN</button></td>
+            <td><button>Tools NOT WORKING</button></td>
+            </tr>
+        }
+    }
+    
+</table>
+
