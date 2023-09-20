@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Test Result";
+}
+@* This view sets the title and displays the total score obtained 
+by the student out of 50 questions. The ViewBag.TotalPoints value is 
+passed from your controller action. This displays the PlacementTest results. *@
+
+<h1>Test Result</h1>
+
+<div>
+    <p>Total Score: @ViewBag.totalPoints</p>
+    <p>Out of 50 questions</p>
+</div>
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home</a>
+
+

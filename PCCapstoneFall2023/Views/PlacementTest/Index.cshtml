@@ -1,0 +1,33 @@
+﻿@model List<MathQuestion>
+
+<h2>Placement Test</h2>
+<p>When you are satisfied with your questions, click the "Publish" button at the bottom of the screen to make this
+    test available to your students.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Correct Answer</th>
+            <th>Points Worth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.AskedQuestion</td>
+                <td>@question.CorrectAnswer</td>
+                <td>@question.PointsWorth</td>
+                <td>
+                    <form asp-action="RemoveQuestion" method="post">
+                        <input type="hidden" name="QuestionId" value="@question.QuestionID" />
+                        <button type="submit">Remove Question</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Home" asp-action="CreatePlacementTestView" class="btn btn-primary">Back</a>
+<a asp-controller="PlacementTest" asp-action="StudentPlacementView"><button class="btn btn-primary">Publish</button></a>
