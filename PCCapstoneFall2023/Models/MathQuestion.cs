@@ -15,6 +15,7 @@ namespace PCCapstoneFall2023.Models
 
         [Required(ErrorMessage ="Please enter the number of points this question is worth.")]
         public int PointsWorth { get; set; }
+        public int? Answer { get; set; }
     }
    
 }

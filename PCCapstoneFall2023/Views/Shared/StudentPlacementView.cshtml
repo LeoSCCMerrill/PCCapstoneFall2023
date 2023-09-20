@@ -1,39 +1,68 @@
 ﻿@model List<MathQuestion>
 
-
 	<h1>Math Placement Test</h1>
+<div id="totalPoints" style="position:; top: 10px; right: 10px;"></div>
+
 	<p>Below is a Math Placement test. This exam will be used to determine your
 		basic math skills. There is no time limit. Please type all of your answers
 		in numeric format. Example 4 + 4 = 8
 	</p>
-
+<form asp-controller="PlacementTest" asp-action="SubmitTest" method="post">
 <table class="table">
     <thead>
         <tr>
             <th>Question</th>
             <th>Answer</th>
             <th></th>
-            <th>Points Worth</th>
+            <th></th>
         </tr>
     </thead>
-    <tbody>
-        @foreach (var question in Model)
-        {
-            <tr>
-                <td>@question.AskedQuestion</td>
-                <td>
-                    <form asp-action="StudentAnswer" method="post">
-                        <input type="number" name="TestAnswer" value="" />
-                    </form>
-                </td>
-                <td input type="hidden">@question.CorrectAnswer</td>
-                <td>@question.PointsWorth</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@* Below the CorrectAnswer and Points worth are brought in 
+but are not visible to the student. *@
+        <tbody>
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="hidden" name="questions[@i].AskedQuestion" value="@Model[i].AskedQuestion" />@Model[i].AskedQuestion
+                    </td>
+                    <td>
+                        <input type="number" name="questions[@i].Answer" value="" />
+                    </td>
+                    <td class="correct-answer" style="display: none;">
+                        <input type="hidden" name="questions[@i].CorrectAnswer" value="@Model[i].CorrectAnswer" />@Model[i].CorrectAnswer
+                    </td>
+                    <td class="points-worth" style="display: none;">
+                        <input type="hidden" name="questions[@i].PointsWorth" value="@Model[i].PointsWorth" />@Model[i].PointsWorth
+                    </td>
+                </tr>
+            }
+        </tbody>
+    <script>
+        // Function to calculate the total points
+        function calculateTotalPoints() {
+            var totalPoints = 0;
+            var pointElements = document.querySelectorAll("td.points-worth");
 
-<p>When you are done, click the "Submit Test" button below. You will then be returned
-	to the Home Page.
-</p>
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Submit Test</a>
+            // Loop through the hidden point elements and sum the points
+            pointElements.forEach(function (pointElement) {
+                totalPoints += parseInt(pointElement.textContent);
+            });
+
+            return totalPoints;
+        }
+
+        // Display the total points in the placeholder element
+        var totalPointsElement = document.getElementById("totalPoints");
+        if (totalPointsElement) {
+            totalPointsElement.textContent = "Total Points: " + calculateTotalPoints();
+        }
+    </script>
+
+</table>
+    <input type="submit" value="Submit Test" class="btn btn-primary" />
+    <br />
+</form>
+
+
+<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Home</a>
