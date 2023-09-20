@@ -1,22 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using PCCapstoneFall2023.Models;
 using System.Diagnostics;
+using System.Linq;
 
 namespace PCCapstoneFall2023.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+      
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
         }
+       
 
         public IActionResult Index()
         {
             return View();
         }
+
+ PlacementTest
+       
+
+        public IActionResult DisplayTest()
+        {
+           
+            return View();
+            
+        }
+
+        public IActionResult CreatePlacementTestView()
 
         
         public IActionResult StudentRanks()
@@ -24,6 +39,7 @@ namespace PCCapstoneFall2023.Controllers
             return View();
         }     
         public IActionResult AdminHome()
+ master
         {
             return View();
         }

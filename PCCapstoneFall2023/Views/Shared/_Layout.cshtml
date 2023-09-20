@@ -26,6 +26,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+PlacementTest
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="CreatePlacementTestView">Create Test</a>
+
                         @if (User.IsInRole("Student"))
                         { 
                             <li class="nav-item">
@@ -49,6 +54,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Parent">Privacy</a>
+master
                         </li>
                     </ul>
                     <partial name="_LoginPartial" />
