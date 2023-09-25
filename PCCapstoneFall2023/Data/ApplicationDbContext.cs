@@ -20,6 +20,7 @@ namespace PCCapstoneFall2023.Data
             modelBuilder.Entity<MathQuestion>()
                 .HasKey(q => q.QuestionID);
         }
+
     }
 
 }

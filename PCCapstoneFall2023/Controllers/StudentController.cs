@@ -6,6 +6,11 @@ namespace PCCapstoneFall2023.Controllers
     [Authorize(Roles ="Student")]
     public class StudentController : Controller
     {
+        private DrillContext context {  get; set; }
+        public DrillContext(DrillContext ctx)
+        {
+            context = ctx;
+        }
         public IActionResult Index()
         {
             return View();
