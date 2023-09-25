@@ -4,6 +4,7 @@ namespace PCCapstoneFall2023.Models
 {
     public class Drill
     {
+        [Key]
         public int DrillQuestID { get; set; } //Primary key
 
         [Required(ErrorMessage = "Please select drill difficulty.")]

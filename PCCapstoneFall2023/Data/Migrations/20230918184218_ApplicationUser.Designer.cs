@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCCapstoneFall2023.Data;
 
@@ -11,9 +12,10 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230918184218_ApplicationUser")]
+    partial class ApplicationUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,12 +85,10 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
@@ -100,12 +100,10 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
@@ -123,20 +121,11 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -224,7 +213,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-
             modelBuilder.Entity("PCCapstoneFall2023.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -288,61 +276,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.Drill", b =>
-                {
-                    b.Property<int>("DrillQuestID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DrillQuestID"), 1L, 1);
-
-                    b.Property<string>("DrillDifficulty")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DrillLength")
-                        .HasColumnType("int");
-
-                    b.Property<string>("DrillRandomized")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DrillTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("answer")
-                        .HasColumnType("int");
-
-                    b.HasKey("DrillQuestID");
-
-                    b.ToTable("drillContext");
-                });
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.MathQuestion", b =>
-                {
-                    b.Property<int>("QuestionID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("QuestionID"), 1L, 1);
-
-                    b.Property<int?>("Answer")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AskedQuestion")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CorrectAnswer")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PointsWorth")
-                        .HasColumnType("int");
-
-                    b.HasKey("QuestionID");
-
-                    b.ToTable("MathQuestions");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
