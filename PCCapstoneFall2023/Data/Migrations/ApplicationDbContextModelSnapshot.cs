@@ -288,6 +288,7 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
 
             modelBuilder.Entity("PCCapstoneFall2023.Models.Drill", b =>
                 {
