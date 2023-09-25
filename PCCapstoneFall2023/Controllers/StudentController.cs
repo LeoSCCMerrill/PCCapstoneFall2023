@@ -1,15 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PCCapstoneFall2023.Data.Migrations;
+using PCCapstoneFall2023.Models;
 
 namespace PCCapstoneFall2023.Controllers
 {
     [Authorize(Roles ="Student")]
     public class StudentController : Controller
     {
-        private DrillContext context {  get; set; }
-        public DrillContext(DrillContext ctx)
+        private DrillContext _context {  get; set; }
+        public  StudentController(DrillContext ctx)
         {
-            context = ctx;
+            _context = ctx;
+            
+
         }
         public IActionResult Index()
         {

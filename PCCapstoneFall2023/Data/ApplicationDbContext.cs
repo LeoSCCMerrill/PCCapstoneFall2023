@@ -11,10 +11,12 @@ namespace PCCapstoneFall2023.Data
         {
              
          }
-        public DbSet<MathQuestion> MathQuestions { get; set; }
+        public DbSet<Drill> drillContext { get; set; }
+           public DbSet<MathQuestion> MathQuestions { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Drill>().HasKey(d => d.DrillQuestID);
 
             // Configure the MathQuestion entity
             modelBuilder.Entity<MathQuestion>()
