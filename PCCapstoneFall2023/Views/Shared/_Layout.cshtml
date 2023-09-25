@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="CreateDrills">Create Drill</a>
+                        </li>
 PlacementTest
                         
                         <li class="nav-item">
@@ -36,6 +39,7 @@ PlacementTest
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Student Home Page</a>
                             </li>
+
                         }
                         @if (User.IsInRole("Teacher"))
                         {
