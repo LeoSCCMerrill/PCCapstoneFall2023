@@ -3,22 +3,22 @@
 @{
     ViewData["Title"] = "Drills";
 }
-
+<!--
 <div class="text-center">
     <h1 class="display-4">Drills you can take:</h1>
 
 
-    <p>Please select The level of difficulty you would like:</p>
-    @*<form asp-action="ChooseDifficulty" method="post">
-         <div class="form-group">
-            <label asp-for="DrillDifficulty">Difficulty</label>
-            <select asp-for="DrillDifficulty" class="form-control">
-                <option value="">Select a difficulty</option>
-                @foreach (var d in Model)
+  <p>Please Select The level of difficulty you would like:</p>
+    <form action="ChooseLevel" method="post">
+         <div class="form-group">@*
+            <label asp-for="LevelID">Difficulty</label>
+            <select asp-for="LevelID" class="form-control">
+                <option value="">select a level</option>
+                @foreach (Level l in ViewBag.Levels)
                 {
                     <option value="@d.DrillDifficulty"></option>
                 }
-            </select>
+            </select>*@
         </div> 
         
     </form>

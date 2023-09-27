@@ -1,17 +1,21 @@
 ﻿using Humanizer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
+using System.Security.Claims;
 
 namespace PCCapstoneFall2023.Controllers
 {
     public class PlacementTestController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public PlacementTestController(ApplicationDbContext context)
+        public PlacementTestController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -30,19 +34,20 @@ namespace PCCapstoneFall2023.Controllers
         //by iterating through the answers and comparing them to the correct answers.
 
         [HttpPost]
-        public IActionResult SubmitTest(List<MathQuestion> questions)
+        public IActionResult SubmitTest(List<MathQuestion> questions, Score model)
         {
             int totalPoints = 0;
-
+            int possiblePoints = 0;
+            var user = _userManager.GetUserAsync(HttpContext.User);
             // Iterate through the list of questions and compare user answers to correct answers
             foreach (var question in questions)
             {
-                
+                possiblePoints += question.PointsWorth;
                 if (question.Answer != question.CorrectAnswer)
                 {
                    
                     // If the user's answer is incorrect, subtract the points
-                    totalPoints -= question.PointsWorth;
+                    //totalPoints -= question.PointsWorth;
                 }
                 else
                 {
@@ -53,7 +58,13 @@ namespace PCCapstoneFall2023.Controllers
 
             // Pass the totalPoints and questions data to the TestResult view
             ViewBag.TotalPoints = totalPoints;
-            ViewBag.Questions = questions;
+            ViewBag.PossiblePoints = possiblePoints;
+            model.PossiblePoints = possiblePoints;
+            model.CorrectPoints = totalPoints;
+            model.UserID = _userManager.GetUserId(User);
+
+            _context.Scores.Add(model);
+            _context.SaveChanges();
 
             // Redirect to the TestResult view
             return View("TestResult");

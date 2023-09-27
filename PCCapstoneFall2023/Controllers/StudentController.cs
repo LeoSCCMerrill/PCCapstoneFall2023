@@ -7,13 +7,13 @@ using PCCapstoneFall2023.Models;
 
 namespace PCCapstoneFall2023.Controllers
 {
-    [Authorize(Roles ="Student")]
+    [Authorize(Roles ="Student,Administrator")]
     public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
         public  StudentController(ApplicationDbContext ctx)
         {
-            _context = ctx;
+            //_context = ctx;
             
 
         }

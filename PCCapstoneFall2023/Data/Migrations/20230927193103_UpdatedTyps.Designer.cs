@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCCapstoneFall2023.Data;
 
@@ -11,9 +12,10 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927193103_UpdatedTyps")]
+    partial class UpdatedTyps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,31 +343,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.ToTable("MathQuestions");
                 });
 
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.Score", b =>
-                {
-                    b.Property<int>("ScoreID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ScoreID"), 1L, 1);
-
-                    b.Property<int>("CorrectPoints")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PossiblePoints")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("ScoreID");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Scores");
-
             modelBuilder.Entity("PCCapstoneFall2023.Models.Parent", b =>
                 {
                     b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
@@ -393,7 +370,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
 
                     b.HasDiscriminator().HasValue("Teacher");
-
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -445,22 +421,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.Score", b =>
-                {
-                    b.HasOne("PCCapstoneFall2023.Models.ApplicationUser", "User")
-                        .WithMany("Scores")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Scores");
                 });
 #pragma warning restore 612, 618
         }

@@ -4,6 +4,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,6 +48,8 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.AllowedUserNameCharacters =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
     options.User.RequireUniqueEmail = false;
+
+
 });
 
 var app = builder.Build();
