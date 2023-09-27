@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace PCCapstoneFall2023.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class UserController : Controller
     {
         private UserManager<ApplicationUser> userManager;
@@ -29,7 +30,7 @@ namespace PCCapstoneFall2023.Controllers
         }
 
         public async Task<IActionResult> CreateUser()
-        {
+        {            
             return View(new ApplicationUser());
         }
 
@@ -75,6 +76,7 @@ namespace PCCapstoneFall2023.Controllers
         {
             IdentityRole identityRole = await roleManager.FindByIdAsync(roleId);
             ApplicationUser applicationUser = await userManager.FindByIdAsync(userId);
+            await _context.SaveChangesAsync();
             await userManager.AddToRoleAsync(applicationUser, identityRole.Name);
             return RedirectToAction("Index");
         }

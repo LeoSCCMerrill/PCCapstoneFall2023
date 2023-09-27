@@ -5,6 +5,7 @@ using PCCapstoneFall2023.Models;
 
 namespace PCCapstoneFall2023.Controllers
 {
+    [Authorize(Roles ="Teacher,Administrator")]
     [Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {

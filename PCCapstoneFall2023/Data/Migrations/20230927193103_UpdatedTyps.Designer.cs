@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCCapstoneFall2023.Data;
 
@@ -11,9 +12,10 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927193103_UpdatedTyps")]
+    partial class UpdatedTyps
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -341,38 +343,33 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.ToTable("MathQuestions");
                 });
 
-            modelBuilder.Entity("PCCapstoneFall2023.Models.TestQuestion", b =>
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Parent", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    b.HasDiscriminator().HasValue("Parent");
+                });
 
-                    b.Property<int?>("Answer")
-                        .HasColumnType("int");
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Student", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
 
-                    b.Property<string>("CorrectAnswer")
+                    b.Property<string>("parentId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Difficulty")
+                    b.Property<string>("teacherId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsRandom")
-                        .HasColumnType("bit");
+                    b.HasDiscriminator().HasValue("Student");
+                });
 
-                    b.Property<int>("PointsWorth")
-                        .HasColumnType("int");
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Teacher", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
 
-                    b.Property<string>("Question")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("testQuestions");
+                    b.HasDiscriminator().HasValue("Teacher");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -424,22 +421,6 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.Score", b =>
-                {
-                    b.HasOne("PCCapstoneFall2023.Models.ApplicationUser", "User")
-                        .WithMany("Scores")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("PCCapstoneFall2023.Models.ApplicationUser", b =>
-                {
-                    b.Navigation("Scores");
                 });
 #pragma warning restore 612, 618
         }
