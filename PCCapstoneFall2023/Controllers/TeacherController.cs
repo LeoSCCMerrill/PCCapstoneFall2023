@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace PCCapstoneFall2023.Controllers
 {
-    [Authorize(Roles ="Teacher")]
+    [Authorize(Roles ="Teacher,Administrator")]
     public class TeacherController : Controller
     {
         public IActionResult Index()

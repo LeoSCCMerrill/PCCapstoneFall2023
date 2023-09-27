@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 
 namespace PCCapstoneFall2023.Controllers
 {
+    [Authorize(Roles ="Administrator")]
     public class UserController : Controller
     {
         private UserManager<ApplicationUser> userManager;
