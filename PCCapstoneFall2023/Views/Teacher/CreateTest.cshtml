@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "CreateATest";
+}
+
+<h1>Create a Test</h1>
+<p>Answers should be in numeric format (example: 12)</p>
+<p>You can add your questions into the Random database. These questions will appear when the student chooses to take a "Randomized" test.
+    type a "1" to add this question to the random pool. type a zero "0" if you do not wish this question to be added
+    to the random pool.
+</p>
+<br>
+<form asp-controller="Teacher" asp-action="Add" method="post">
+
+    <p>1 = Yes</p>
+    <p>0 = No</p>
+    <label>Random? </label>
+    <input name="IsRandom" /><br />
+    <br>
+
+    <label>Question: </label>
+    <input name="Question" /><br />
+    <br>
+
+    <label>Answer: </label>
+    <input name="CorrectAnswer" /><br />
+    <br>
+
+    <label>Difficulty: </label>
+    <input name="Difficulty" /><br />
+    <br>
+
+    <label>Points Worth:</label>
+    <input name="PointsWorth" /><br />
+    <br>
+
+    <button type="submit">Add Question</button>
+    <br><br>
+    <button asp-controller="Teacher" asp-action="ReviewTest" method="get">View Test</button>
+</form>

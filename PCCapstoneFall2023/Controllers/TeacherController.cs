@@ -12,11 +12,11 @@ namespace PCCapstoneFall2023.Controllers
     [Authorize(Roles ="Teacher,Administrator")]
     public class TeacherController : Controller
     {
-        private readonly ApplicationDbContext _context; 
-        
-        public TeacherController(ApplicationDbContext context) {
+        private readonly ApplicationDbContext _context;
+
+        public TeacherController(ApplicationDbContext context)
+        {
             _context = context;
-            
         }
         public IActionResult Index()
         {
@@ -33,29 +33,56 @@ namespace PCCapstoneFall2023.Controllers
         {
             return View();
         }
+        public IActionResult CreateTest()
+        {
+            var testQuestions = _context.testQuestions.ToList();
+            return View(testQuestions);
+        }
 
+        public IActionResult ReviewTest()
+        {
+            List<TestQuestion> questions = _context.testQuestions.ToList();
+            return View(questions);
+        }
         public IActionResult TestResults() 
         {
             return View();
         }
 
         [HttpPost]
-        
-        public async Task<IActionResult> Create([Bind("DrillDifficulty, DrillLength, DrillRandomized, DrillTime, answer")] Drill dc)
+        [Authorize(Roles = "Teacher")]
+        public IActionResult Add(TestQuestion model)
         {
-            try
+            if (ModelState.IsValid)
             {
-                
-                _context.Add(dc);
-                await _context.SaveChangesAsync();
-                
+                // Add the math question to the database
+                _context.testQuestions.Add(model);
+                _context.SaveChanges();
+
+                return RedirectToAction("ReviewTest"); // Redirect to the review test page
             }
-            catch (Exception ex)
+
+            return View("CreateTest", model); // Show the form with validation errors
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Teacher")]
+        public IActionResult RemoveQuestion(int Id)
+        {
+            var question = _context.testQuestions.Find(Id);
+
+            if (question != null)
             {
-                throw;
+                _context.testQuestions.Remove(question);
+                _context.SaveChanges();
+                TempData["SuccessMessage"] = "Question removed successfully.";
             }
-            return View("Index");
-            
+            else
+            {
+                TempData["ErrorMessage"] = "Question not found or already removed.";
+            }
+
+            return RedirectToAction("CreateTest");
         }
     }
 }

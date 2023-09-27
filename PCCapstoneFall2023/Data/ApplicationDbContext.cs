@@ -11,9 +11,10 @@ namespace PCCapstoneFall2023.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-
-        }
-        public DbSet<Drill> DrillContext { get; set; }
+             
+         }
+        public DbSet<Drill> drillContext { get; set; }
+        public DbSet<TestQuestion> testQuestions { get; set; }
         public DbSet<MathQuestion> MathQuestions { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
@@ -25,12 +26,19 @@ namespace PCCapstoneFall2023.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // Configure the TestQuestion entity
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<TestQuestion>().HasKey(t => t.Id);
+
+            // Configure the Drill entity
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Drill>().HasKey(d => d.DrillQuestID);
 
             // Configure the MathQuestion entity
             modelBuilder.Entity<MathQuestion>()
                 .HasKey(q => q.QuestionID);
+
+            // Configure the ApplicationUser entity
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().HasKey(x => x.Id);
             const string ADMIN_USER_ID = "b4280b6a-0613-4cbd-a9e6-f1701e926e73";
