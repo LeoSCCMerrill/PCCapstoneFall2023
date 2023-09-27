@@ -1,7 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace PCCapstoneFall2023.Controllers
 {
@@ -9,8 +13,10 @@ namespace PCCapstoneFall2023.Controllers
     public class TeacherController : Controller
     {
         private readonly ApplicationDbContext _context; 
+        
         public TeacherController(ApplicationDbContext context) {
             _context = context;
+            
         }
         public IActionResult Index()
         {
@@ -18,7 +24,8 @@ namespace PCCapstoneFall2023.Controllers
         }
         public IActionResult CreateDrills()
         {
-            Drill dc = new Drill(1, "Test", 2, "yes", DateTime.Now, 2);
+            
+            
             //List<Drill> drills = _context.Add(dc)
             return View();
         }
@@ -33,14 +40,22 @@ namespace PCCapstoneFall2023.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateDrills([Bind]Drill dc)
+        
+        public async Task<IActionResult> Create([Bind("DrillDifficulty, DrillLength, DrillRandomized, DrillTime, answer")] Drill dc)
         {
-            
-            if (ModelState.IsValid)
+            try
             {
                 
+                _context.Add(dc);
+                await _context.SaveChangesAsync();
+                
             }
-            return View("DrillResults");
+            catch (Exception ex)
+            {
+                throw;
+            }
+            return View("Index");
+            
         }
     }
 }

@@ -3,8 +3,8 @@
     
     ViewData["Title"] = "Create Drills";
 }
-
-<form class="form-horizontal">
+@ViewBag.Test
+<form class="form-horizontal" method="post">
     <div class="form-group">
         <label class="control-label">DrillQuestID</label>
         <input asp-for="DrillQuestID" />
@@ -30,8 +30,8 @@
         <input asp-for="answer" />
     </div>
     <div class="form-group">
-        <input type="submit" value="Create" class="btn btn-primary"/>
+        <Button asp-action="Create" class="btn btn-primary">Submit</Button>
 
     </div>
-
+    <input name="__RequestVerificationToken" type="hidden" value="CfDJ8Inyxgp63fRFqUePGvuI5jGZsloJu1L7X9le1gy7NCIlSduCRx9jDQClrV9pOTTmqUyXnJBXhmrjcUVDJyDUMm7-MF_9rK8aAZdRdlOri7FmKVkRe_2v5LIHGKFcTjPrWPYnc9AdSbomkiOSaTEg7RU" />
 </form>
