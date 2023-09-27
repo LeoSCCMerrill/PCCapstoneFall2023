@@ -28,7 +28,7 @@ namespace PCCapstoneFall2023.Data
             modelBuilder.Entity<ApplicationUser>().HasKey(x => x.Id);
 
             modelBuilder.Entity<Score>()
-                .HasOne(e => e.ApplicationUser)
+                .HasOne(e => e.User)
                 .WithMany(e => e.Scores);
         }
     }
