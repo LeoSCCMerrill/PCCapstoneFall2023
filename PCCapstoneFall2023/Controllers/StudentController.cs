@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Data.Migrations;
 using PCCapstoneFall2023.Models;
 
@@ -8,8 +10,8 @@ namespace PCCapstoneFall2023.Controllers
     [Authorize(Roles ="Student")]
     public class StudentController : Controller
     {
-        private DrillContext _context {  get; set; }
-        public  StudentController(DrillContext ctx)
+        private readonly ApplicationDbContext _context;
+        public  StudentController(ApplicationDbContext ctx)
         {
             _context = ctx;
             
@@ -17,12 +19,15 @@ namespace PCCapstoneFall2023.Controllers
         }
         public IActionResult Index()
         {
+
             return View();
         }
 
         public IActionResult Drills()
         {
-            return View();
+            List<Drill> drills = _context.drillContext.ToList(); 
+            return View(drills);
+
         }
 
         public IActionResult DrillResults()
@@ -39,5 +44,21 @@ namespace PCCapstoneFall2023.Controllers
         {
             return View();
         }
+
+        public IActionResult ChooseDifficulty()
+        {
+            return View();
+        }
+
+        public IActionResult ChooseLength()
+        {
+            return View();
+        }
+
+        public IActionResult IsRandomized()
+        {
+            return View();
+        }
+
     }
 }

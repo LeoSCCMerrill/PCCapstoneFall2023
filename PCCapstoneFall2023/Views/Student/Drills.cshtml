@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Drill>
+
+@{
     ViewData["Title"] = "Drills";
 }
 
@@ -6,21 +8,47 @@
     <h1 class="display-4">Drills you can take:</h1>
 
 
-@*    <p>Please Select The level of difficulty you would like:</p>
-    <form action="ChooseLevel" method="post">
+    <p>Please select The level of difficulty you would like:</p>
+    @*<form asp-action="ChooseDifficulty" method="post">
          <div class="form-group">
-            <label asp-for="LevelID">Difficulty</label>
-            <select asp-for="LevelID" class="form-control">
-                <option value="">select a level</option>
-                @foreach (Level l in ViewBag.Levels)
+            <label asp-for="DrillDifficulty">Difficulty</label>
+            <select asp-for="DrillDifficulty" class="form-control">
+                <option value="">Select a difficulty</option>
+                @foreach (var d in Model)
                 {
-                    <option value="@l.LevelID">@l.Name</option>
+                    <option value="@d.DrillDifficulty"></option>
                 }
             </select>
         </div> 
         
-
     </form>
-    *@
+
+    <p>Please select how long you would like your drill to be:</p>
+    <form asp-action="ChooseLength" method="post">
+        <div class="form-group">
+            <label asp-for="DrillLength">Length</label>
+            <select asp-for="DrillLength" class="form-control">
+                <option value="">Select number of quest.</option>
+                @foreach (var l in Model)
+                {
+                    <option value="@l.DrillLength">@l.DrillLength</option>
+                }
+            </select>
+        </div>
+    </form>
+
+    <p>Do you want randomized questions?</p>
+    <form asp-action="IsRandomized" method="post">
+        <div class="form-group">
+            <label asp-for="DrillRandomized">Randomized</label>
+            <select asp-for="DrillRandomized" class="form-control">
+                <option value="">Select yes or no</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+
+            </select>
+        </div>
+    </form>*@
+
     <p>Placeholder Text</p>
 </div>
