@@ -15,6 +15,7 @@ namespace PCCapstoneFall2023.Data
         public DbSet<Drill> drillContext { get; set; }
         public DbSet<MathQuestion> MathQuestions { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<Score> Scores { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -25,6 +26,10 @@ namespace PCCapstoneFall2023.Data
                 .HasKey(q => q.QuestionID);
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<ApplicationUser>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<Score>()
+                .HasOne(e => e.ApplicationUser)
+                .WithMany(e => e.Scores);
         }
     }
 }

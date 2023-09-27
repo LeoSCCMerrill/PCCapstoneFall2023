@@ -33,16 +33,17 @@ namespace PCCapstoneFall2023.Controllers
         public IActionResult SubmitTest(List<MathQuestion> questions)
         {
             int totalPoints = 0;
+            int possiblePoints = 0;
 
             // Iterate through the list of questions and compare user answers to correct answers
             foreach (var question in questions)
             {
-                
+                possiblePoints += question.PointsWorth;
                 if (question.Answer != question.CorrectAnswer)
                 {
                    
                     // If the user's answer is incorrect, subtract the points
-                    totalPoints -= question.PointsWorth;
+                    //totalPoints -= question.PointsWorth;
                 }
                 else
                 {
@@ -53,7 +54,7 @@ namespace PCCapstoneFall2023.Controllers
 
             // Pass the totalPoints and questions data to the TestResult view
             ViewBag.TotalPoints = totalPoints;
-            ViewBag.Questions = questions;
+            ViewBag.PossiblePoints = possiblePoints;
 
             // Redirect to the TestResult view
             return View("TestResult");

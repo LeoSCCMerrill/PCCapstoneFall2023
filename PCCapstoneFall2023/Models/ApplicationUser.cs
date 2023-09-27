@@ -8,5 +8,6 @@ namespace PCCapstoneFall2023.Models
         [NotMapped]
         public IList<string> RoleNames { get; set; }
 
+        public IList<Score> ?Scores { get; set; }
     }
 }
