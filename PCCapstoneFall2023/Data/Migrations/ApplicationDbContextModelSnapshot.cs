@@ -52,9 +52,30 @@ namespace PCCapstoneFall2023.Data.Migrations
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
-                            ConcurrencyStamp = "07b27d30-9bd3-4655-826f-73f678145684",
+                            ConcurrencyStamp = "f925122d-16fe-473d-9b78-de40c5581ab4",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "22d6208e-e968-487e-a8f6-59a1c3ce94d7",
+                            ConcurrencyStamp = "375189ca-4cab-4ad3-a118-dccc3b6a4821",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "4998520f-93b5-46c9-818c-122ae6a3796c",
+                            ConcurrencyStamp = "ffd4c51a-e79b-43fb-9ba5-d0c18b3244aa",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "e46f5809-0636-41b8-ba7a-f1f7d808769c",
+                            ConcurrencyStamp = "5b49aae5-3267-464f-b4ed-dcd5d78b2ba9",
+                            Name = "Parent",
+                            NormalizedName = "PARENT"
                         });
                 });
 
@@ -187,6 +208,10 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -239,6 +264,8 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+
                     b.HasData(
                         new
                         {
@@ -285,7 +312,7 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.HasKey("DrillQuestID");
 
-                    b.ToTable("drillContext");
+                    b.ToTable("DrillContext");
                 });
 
             modelBuilder.Entity("PCCapstoneFall2023.Models.MathQuestion", b =>
@@ -314,6 +341,7 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.ToTable("MathQuestions");
                 });
 
+
             modelBuilder.Entity("PCCapstoneFall2023.Models.Score", b =>
                 {
                     b.Property<int>("ScoreID")
@@ -337,6 +365,35 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Scores");
+
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Parent", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
+
+                    b.HasDiscriminator().HasValue("Parent");
+                });
+
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Student", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
+
+                    b.Property<string>("parentId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("teacherId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Student");
+                });
+
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Teacher", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
+
+                    b.HasDiscriminator().HasValue("Teacher");
+
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
