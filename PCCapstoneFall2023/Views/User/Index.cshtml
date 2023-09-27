@@ -10,7 +10,7 @@
 
 <table class="table table-bordered table-striped table-sm">
     <thead>
-        <tr><th>Username</th><th>Roles</th><th></th></tr>
+        <tr><th>Username</th><th>Roles</th><th>Types</th><th></th></tr>
     </thead>
     <tbody>
         @if (Model.Users.Count() == 0)
@@ -46,6 +46,29 @@
                         }
 
 
+                    </td>
+                    <td>
+                        <form method="post" asp-action="TeacherToggle" asp-route-userId="@user.Id">
+                            @{
+                                bool clickedTeacher = user.GetType() == typeof(Teacher);
+                            }
+                            <input id="TeacherCheckbox" type="checkbox" value="@clickedTeacher" />
+                            <label for="TeacherCheckbox">Teacher</label>
+                        </form>
+                        <form method="post" asp-action="ParentToggle" asp-route-userId="@user.Id">
+                            @{
+                                bool clickedParent = user.GetType() == typeof(Parent);
+                            }
+                            <input id="ParentCheckbox" type="checkbox" value="@clickedParent" />
+                            <label for="ParentCheckbox">Parent</label>
+                        </form>
+                        <form method="post" asp-action="StudentToggle" asp-route-userId="@user.Id">
+                            @{
+                                bool clickedStudent = user.GetType() == typeof(Student);
+                            }
+                            <input id="StudentCheckbox" type="checkbox" value="@clickedStudent" />
+                            <label for="StudentCheckbox">Student</label>
+                        </form>
                     </td>
                     <td>
                         <form method="post" asp-action="DeleteUser" asp-route-userId="@user.Id">

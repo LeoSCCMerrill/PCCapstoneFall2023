@@ -12,8 +12,8 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230927181543_adminAccount")]
-    partial class adminAccount
+    [Migration("20230927191757_accountTypes")]
+    partial class accountTypes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,9 +54,30 @@ namespace PCCapstoneFall2023.Data.Migrations
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
-                            ConcurrencyStamp = "07b27d30-9bd3-4655-826f-73f678145684",
+                            ConcurrencyStamp = "27d7c7e1-e3bc-426e-a212-31de0dd6ba9e",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "22d6208e-e968-487e-a8f6-59a1c3ce94d7",
+                            ConcurrencyStamp = "bf8e62e3-2d88-4ad6-af1c-a2b590814421",
+                            Name = "Student",
+                            NormalizedName = "STUDENT"
+                        },
+                        new
+                        {
+                            Id = "4998520f-93b5-46c9-818c-122ae6a3796c",
+                            ConcurrencyStamp = "f48fb5b5-7ac4-4e4d-a696-0bfffaf95105",
+                            Name = "Teacher",
+                            NormalizedName = "TEACHER"
+                        },
+                        new
+                        {
+                            Id = "e46f5809-0636-41b8-ba7a-f1f7d808769c",
+                            ConcurrencyStamp = "f6e5c25a-c3eb-4358-86dc-17a4c5663295",
+                            Name = "Parent",
+                            NormalizedName = "PARENT"
                         });
                 });
 
@@ -185,8 +206,15 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<int>("AccountType")
+                        .HasColumnType("int");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
@@ -210,6 +238,9 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 
+                    b.Property<string>("ParentId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PasswordHash")
                         .HasColumnType("nvarchar(max)");
 
@@ -220,6 +251,9 @@ namespace PCCapstoneFall2023.Data.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -241,11 +275,14 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.ToTable("AspNetUsers", (string)null);
 
+                    b.HasDiscriminator<string>("Discriminator").HasValue("ApplicationUser");
+
                     b.HasData(
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
                             AccessFailedCount = 0,
+                            AccountType = 0,
                             ConcurrencyStamp = "c8554266-b401-4519-9aeb-a9283053fc58",
                             Email = "admin@myemail.com",
                             EmailConfirmed = true,
@@ -314,6 +351,13 @@ namespace PCCapstoneFall2023.Data.Migrations
                     b.HasKey("QuestionID");
 
                     b.ToTable("MathQuestions");
+                });
+
+            modelBuilder.Entity("PCCapstoneFall2023.Models.Parent", b =>
+                {
+                    b.HasBaseType("PCCapstoneFall2023.Models.ApplicationUser");
+
+                    b.HasDiscriminator().HasValue("Parent");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
