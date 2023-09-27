@@ -4,7 +4,7 @@ using System.Data;
 
 namespace PCCapstoneFall2023.Controllers
 {
-    [Authorize(Roles = "Parent")]
+    [Authorize(Roles = "Parent,Administrator")]
     public class ParentController : Controller
     {
         public IActionResult Index()

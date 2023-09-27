@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 
 namespace PCCapstoneFall2023.Controllers
 {
-    //[Authorize(Roles ="Teacher")]
+    [Authorize(Roles ="Teacher,Administrator")]
     public class TeacherController : Controller
     {
         private readonly ApplicationDbContext _context; 

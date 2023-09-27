@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
 using System.Diagnostics;
 using System.Linq;
@@ -9,10 +11,12 @@ namespace PCCapstoneFall2023.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-      
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext context;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext _context)
         {
             _logger = logger;
+            context = _context;
         }
        
 
