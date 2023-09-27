@@ -16,9 +16,13 @@ namespace PCCapstoneFall2023.Data
         public DbSet<Drill> DrillContext { get; set; }
         public DbSet<MathQuestion> MathQuestions { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
+        public DbSet<Score> Scores { get; set; }
+
         public DbSet<Parent> Parents { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

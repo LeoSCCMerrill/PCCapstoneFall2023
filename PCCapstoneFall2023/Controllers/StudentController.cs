@@ -8,10 +8,10 @@ namespace PCCapstoneFall2023.Controllers
     [Authorize(Roles ="Student,Administrator")]
     public class StudentController : Controller
     {
-        private DrillContext _context {  get; set; }
-        public  StudentController(DrillContext ctx)
+        //private DrillContext _context {  get; set; }
+        public  StudentController(/*DrillContext ctx*/)
         {
-            _context = ctx;
+            //_context = ctx;
             
 
         }

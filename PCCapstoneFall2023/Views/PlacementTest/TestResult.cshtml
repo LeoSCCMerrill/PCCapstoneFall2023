@@ -9,7 +9,7 @@ passed from your controller action. This displays the PlacementTest results. *@
 
 <div>
     <p>Total Score: @ViewBag.totalPoints</p>
-    <p>Out of 50 questions</p>
+    <p>Out of @ViewBag.possiblePoints points</p>
 </div>
 
 <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Return to Home</a>
