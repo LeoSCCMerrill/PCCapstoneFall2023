@@ -1,4 +1,5 @@
 ﻿using Humanizer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
@@ -13,13 +14,15 @@ namespace PCCapstoneFall2023.Controllers
         {
             _context = context;
         }
-
+        [Authorize(Roles = "Teacher")]
         public IActionResult Index()
         {
             var mathQuestions = _context.MathQuestions.ToList();
             return View(mathQuestions);
         }
 
+
+        [Authorize(Roles = "Student")]
         public IActionResult StudentPlacementView()
         {
             List<MathQuestion> questions = _context.MathQuestions.ToList();
@@ -67,8 +70,7 @@ namespace PCCapstoneFall2023.Controllers
             if (!totalScore.HasValue)
             {
                 // Handle the case where the total score is not available in the session.
-                // You can redirect or display an error message as needed.
-                return RedirectToAction("Index"); // Redirect to home page, for example.
+                return RedirectToAction("Index"); // Redirect to home page.
             }
 
             ViewBag.TotalScore = totalScore;
@@ -78,6 +80,7 @@ namespace PCCapstoneFall2023.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public IActionResult Add(MathQuestion model)
         {
             if (ModelState.IsValid)
@@ -93,6 +96,7 @@ namespace PCCapstoneFall2023.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Teacher")]
         public IActionResult RemoveQuestion(int questionId)
         {
             var question = _context.MathQuestions.Find(questionId);

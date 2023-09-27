@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCCapstoneFall2023.Data;
 
@@ -11,9 +12,10 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230927170724_InitialTestQuestion")]
+    partial class InitialTestQuestion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -301,9 +303,6 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.Property<bool>("IsRandom")
                         .HasColumnType("bit");
-
-                    b.Property<int>("PointsWorth")
-                        .HasColumnType("int");
 
                     b.Property<string>("Question")
                         .IsRequired()

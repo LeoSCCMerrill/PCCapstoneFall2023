@@ -1,0 +1,36 @@
+﻿@model List<TestQuestion>
+
+<h2>Test Designer</h2>
+<p>
+    When you are satisfied with your questions, click the "Publish" button at the bottom of the screen to make this
+    test available to your students.
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Difficulty</th>
+            <th>Correct Answer</th>
+            <th>Points Worth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var question in Model)
+        {
+            <tr>
+                <td>@question.Question</td>
+                <td>@question.Difficulty</td>
+                <td>@question.CorrectAnswer</td>
+                <td>@question.PointsWorth</td>
+                <td>
+                    <form asp-action="RemoveQuestion" method="post">
+                        <input type="hidden" name="Id" value="@question.Id" />
+                        <button type="submit">Remove Question</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-controller="Teacher" asp-action="CreateTest" class="btn btn-primary">Back</a>
+<a asp-controller="Teacher" asp-action="TestResults"><button class="btn btn-primary">Publish</button></a>
