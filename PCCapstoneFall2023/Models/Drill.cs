@@ -20,6 +20,7 @@ namespace PCCapstoneFall2023.Models
 
         public int? answer { get; set; }
 
+        public Drill() { }
         public Drill (int drillQuestID, string drillDifficulty, int drillLength, string drillRandomized, DateTime drillTime, int? answer)
         {
             DrillQuestID = drillQuestID;

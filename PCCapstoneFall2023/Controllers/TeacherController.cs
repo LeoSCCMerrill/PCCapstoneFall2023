@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using PCCapstoneFall2023.Data;
 using PCCapstoneFall2023.Models;
+using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace PCCapstoneFall2023.Controllers
 {
     [Authorize(Roles ="Teacher,Administrator")]
-    [Authorize(Roles = "Teacher")]
     public class TeacherController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -21,6 +24,9 @@ namespace PCCapstoneFall2023.Controllers
         }
         public IActionResult CreateDrills()
         {
+            
+            
+            //List<Drill> drills = _context.Add(dc)
             return View();
         }
         public IActionResult DrillResults()
