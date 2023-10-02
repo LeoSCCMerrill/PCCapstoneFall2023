@@ -13,8 +13,8 @@ namespace PCCapstoneFall2023.Data
         {
              
          }
-        public DbSet<Drill> drillContext { get; set; }
-        public DbSet<TestQuestion> testQuestions { get; set; }
+        public DbSet<Drill> DrillContext { get; set; }
+        public DbSet<TestQuestion> TestQuestions { get; set; }
         public DbSet<MathQuestion> MathQuestions { get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
@@ -80,7 +80,7 @@ namespace PCCapstoneFall2023.Data
                 Email = "admin@myemail.com",
                 NormalizedEmail = "ADMIN@MYEMAIL.COM",
                 EmailConfirmed = true,
-                PasswordHash = "AQAAAAEAACcQAAAAEALfXOO0MYDpnaWi+2TO6u67hE3xzrew03QVb8Vb3wTOdiKZzWGSm42SscHBRPRT0g==",
+                PasswordHash = "AQAAAAEAACcQAAAAEALfXOO0MYDpnaWi+2TO6u67hE3xzrew03QVb8Vb3wTOdiKZzWGSm42SscHBRPRT0g==", // Password1!
                 SecurityStamp = "VVPCRDAS3MJWQD5CSW2GWPRADBXEZINA",
                 ConcurrencyStamp = "c8554266-b401-4519-9aeb-a9283053fc58"
             });

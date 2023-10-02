@@ -25,7 +25,7 @@ namespace PCCapstoneFall2023.Controllers
         }
 
 
-        [Authorize(Roles = "Student")]
+        [Authorize(Roles = "Student, Administrator")]
         public IActionResult StudentPlacementView()
         {
             List<MathQuestion> questions = _context.MathQuestions.ToList();
@@ -90,7 +90,7 @@ namespace PCCapstoneFall2023.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher, Administrator")]
         public IActionResult Add(MathQuestion model)
         {
             if (ModelState.IsValid)
@@ -106,7 +106,7 @@ namespace PCCapstoneFall2023.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Teacher")]
+        [Authorize(Roles = "Teacher, Administrator")]
         public IActionResult RemoveQuestion(int questionId)
         {
             var question = _context.MathQuestions.Find(questionId);

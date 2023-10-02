@@ -25,10 +25,7 @@ namespace PCCapstoneFall2023.Controllers
 
         public IActionResult Drills()
         {
-
-            List<Drill> drills = _context.drillContext.ToList();
-            return View(drills);
-
+            return View();
         }
 
         public IActionResult DrillResults()
