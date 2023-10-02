@@ -11,21 +11,22 @@ namespace PCCapstoneFall2023.Controllers
     public class StudentController : Controller
     {
         private readonly ApplicationDbContext _context;
+
         public  StudentController(ApplicationDbContext ctx)
         {
-            //_context = ctx;
-            
+            _context = ctx;
 
         }
+
         public IActionResult Index()
         {
-
             return View();
         }
 
         public IActionResult Drills()
         {
-            List<Drill> drills = _context.drillContext.ToList(); 
+
+            List<Drill> drills = _context.drillContext.ToList();
             return View(drills);
 
         }
