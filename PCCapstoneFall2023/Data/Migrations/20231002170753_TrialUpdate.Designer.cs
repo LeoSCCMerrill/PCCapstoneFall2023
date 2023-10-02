@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCCapstoneFall2023.Data;
 
@@ -11,9 +12,10 @@ using PCCapstoneFall2023.Data;
 namespace PCCapstoneFall2023.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231002170753_TrialUpdate")]
+    partial class TrialUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,28 +54,28 @@ namespace PCCapstoneFall2023.Data.Migrations
                         new
                         {
                             Id = "b4280b6a-0613-4cbd-a9e6-f1701e926e73",
-                            ConcurrencyStamp = "fb8c7dec-108d-4883-8ceb-bbcc17946d5e",
+                            ConcurrencyStamp = "36410c82-d45b-4e2c-8583-b8e0b54cb431",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "22d6208e-e968-487e-a8f6-59a1c3ce94d7",
-                            ConcurrencyStamp = "dfe8e186-39e5-413b-916f-174fd634cf05",
+                            ConcurrencyStamp = "ad6c32f9-eb51-499e-bfbb-10264e5c1d49",
                             Name = "Student",
                             NormalizedName = "STUDENT"
                         },
                         new
                         {
                             Id = "4998520f-93b5-46c9-818c-122ae6a3796c",
-                            ConcurrencyStamp = "ffe9de4f-5005-4c1f-bca7-4d4f346a2957",
+                            ConcurrencyStamp = "d99a192e-1ffc-4fa3-bb26-7d9fb39f24d5",
                             Name = "Teacher",
                             NormalizedName = "TEACHER"
                         },
                         new
                         {
                             Id = "e46f5809-0636-41b8-ba7a-f1f7d808769c",
-                            ConcurrencyStamp = "97ac1376-9b48-4127-9007-bb90ac85c75a",
+                            ConcurrencyStamp = "68f7d9bb-857e-4415-aa1c-bb865edcfed5",
                             Name = "Parent",
                             NormalizedName = "PARENT"
                         });
@@ -312,7 +314,7 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.HasKey("DrillQuestID");
 
-                    b.ToTable("DrillContext");
+                    b.ToTable("drillContext");
                 });
 
             modelBuilder.Entity("PCCapstoneFall2023.Models.MathQuestion", b =>
@@ -397,7 +399,7 @@ namespace PCCapstoneFall2023.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TestQuestions");
+                    b.ToTable("testQuestions");
                 });
 
             modelBuilder.Entity("PCCapstoneFall2023.Models.Parent", b =>
